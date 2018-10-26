@@ -1,0 +1,10 @@
+.idea/
+project-generator.iml
+target/
+
+/generator-plugin/out/
+/generator-plugin/.idea/
+/generator-plugin/build/
+/generator-plugin/gradle/
+/generator-plugin/.gradle/
+/generator-web/nodumle

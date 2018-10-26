@@ -1,0 +1,9 @@
+ {{#items}}
+    <div class="input-group">
+        <span class="input-group-btn input-item-label">
+             <label for="{{key}}" class="btn btn-secondary">{{key}}</label>
+        </span>
+        <input type="text" class="form-control config-item" id="{{key}}" placeholder="{{key}}" value={{value}}>
+    </div>
+{{/items}}
+

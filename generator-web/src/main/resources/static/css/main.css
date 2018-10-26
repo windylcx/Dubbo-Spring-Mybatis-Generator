@@ -1,0 +1,34 @@
+body{
+    background-color: bisque;
+}
+
+.mainTab{
+    margin: 20px;
+}
+.input-item{
+    margin-top: 5px;
+}
+
+.input-item-label{
+    width: 150px;
+}
+.chunxiao-form .input-group{
+    margin-top: 5px;
+}
+.chunxiao-form .input-group .form-control{
+    width: 500px;
+}
+.chunxiao-form .input-group .btn{
+    margin-left: 5px;
+}
+
+.chunxiao-form .input-group .tips{
+    width: 22px;
+    height:22px;
+    background:url("../img/help.gif");
+}
+.loading{
+    display: none;
+    width: 100%;
+    height: 100%;
+}

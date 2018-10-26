@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代码生成器</title>
+
+    <script src="lib/base64.js"></script>
+    <script src="lib/main.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">生成RPC项目</a></li>
+        <li><a href="#tab2" data-toggle="tab">生成WEB项目(todo)</a></li>
+        <li><a href="#tab3" data-toggle="tab">生成RPC-WEB项目(todo)</a></li>
+        <li><a href="#tab4" data-toggle="tab">默认配置</a></li>
+        <li><a href="#tab5" data-toggle="tab">文档</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active mainTab" id="tab1">
+            <form class="form-horizontal chunxiao-form rpc" >
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >项目名称</label>
+                      </span>
+                    <input type="text" name="name" class="form-control config-item" placeholder="" >
+                </div>
+
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >groupId</label>
+                      </span>
+                    <input  type="text" name="group_id" class="form-control config-item" value="com.chunxiao.dev" placeholder="">
+                </div>
+
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >owner</label>
+                      </span>
+                    <input type="text" name="owner" class="form-control" placeholder="">
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >表结构SQL</label>
+                      </span>
+                    <textarea type="text"  name="tables_sql" class="form-control config-item" placeholder="">
+                    </textarea>
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary"
+                               >sql文件</label>
+                      </span>
+                    <input  class="file-upload" type="file"  name="sqlFile">
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary"
+                               >properties</label>
+                      </span>
+                    <input  class="file-upload" type="file"  name="properties">
+
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >logback.xml</label>
+                      </span>
+                    <input  class="file-upload" value="logback.xml" type="file" name="logback">
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >api-pom</label>
+                      </span>
+                    <input class="file-upload" value="logback.xml" type="file" name="apiPom">
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >provider-pom</label>
+                      </span>
+                    <input class="file-upload" value="logback.xml" type="file" >
+                </div>
+            </form>
+            <div class="input-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-default generate" data-type="rpc" >
+                        生成
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane mainTab" id="tab2">
+            <form class="form-horizontal chunxiao-form web" >
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >项目名称</label>
+                      </span>
+                    <input type="text" name="name" class="form-control config-item" placeholder="" >
+                </div>
+
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >groupId</label>
+                      </span>
+                    <input  type="text" name="group_id" class="form-control config-item" value="com.chunxiao.dev" placeholder="" >
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary"
+                               >properties</label>
+                      </span>
+                    <input  class="file-upload" type="file" >
+
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >logback.xml</label>
+                      </span>
+                    <input  class="file-upload" value="logback.xml" type="file" >
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >json文件</label>
+                      </span>
+                    <input class="file-upload" value="logback.xml" type="file" >
+                </div>
+            </form>
+            <div class="input-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-default generate" data-type="web">
+                        生成
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane mainTab" id="tab3">
+            <form class="form-horizontal chunxiao-form all" >
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >项目名称</label>
+                      </span>
+                    <input type="text" name="name" class="form-control config-item" placeholder="" >
+                </div>
+
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >groupId</label>
+                      </span>
+                    <input  type="text" name="group_id" class="form-control config-item" value="com.chunxiao.dev" placeholder="">
+                </div>
+
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >owner</label>
+                      </span>
+                    <input type="text" name="owner" class="form-control" placeholder="" >
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >表结构SQL</label>
+                      </span>
+                    <textarea type="text"  name="tables_sql" class="form-control config-item" placeholder="" >
+                    </textarea>
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary"
+                               >sql文件</label>
+                      </span>
+                    <input  class="file-upload" type="file" >
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary"
+                               >properties</label>
+                      </span>
+                    <input  class="file-upload" type="file" >
+
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >logback.xml</label>
+                      </span>
+                    <input  class="file-upload" value="logback.xml" type="file" >
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >json文件</label>
+                      </span>
+                    <input class="file-upload" value="logback.xml" type="file" >
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >api-pom</label>
+                      </span>
+                    <input class="file-upload" value="logback.xml" type="file" >
+                </div>
+                <div class="input-group">
+                      <span class="input-group-btn input-item-label">
+                        <label class="btn btn-secondary" >provider-pom</label>
+                      </span>
+                    <input class="file-upload" value="logback.xml" type="file" >
+                </div>
+
+            </form>
+            <div class="input-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-default generate" data-type="all">
+                        生成
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane mainTab" id="tab4">
+            <form class="form-horizontal chunxiao-form" id="defaultConfig">
+            </form>
+        </div>
+        <div class="tab-pane mainTab" id="tab5">
+            <div id="docs"></div>
+        </div>
+    </div>
+</div>
+<div class="loading">
+</div>
+<script src="lib/shown.min.js"></script>
+<script>
+    $.get('tpl/README.md', (template) => {
+        const converter = new showdown.Converter(),
+            html = converter.makeHtml(template);
+        $("#docs").html(html);
+    }).fail((err) => {
+        java.log(err);
+    });
+</script>
+</body>
+</html>

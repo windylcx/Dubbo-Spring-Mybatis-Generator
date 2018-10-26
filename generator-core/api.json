@@ -1,0 +1,251 @@
+### 1. 每期还款额查询 ###
+>
+CGI URL : `/sevend_mall_app/get_repay_each_period`
+>
+`请求参数 : `
+
+```
+{
+"session_key": "asfwe-va3asdf-af23234",
+"good_list": [
+{
+"good_id": "good_id1",            // 商品ID，分期金额，单位：分，分期期数，利率
+"principal": 120000,
+"period": 6,
+"rate": "0.1245"
+},
+{
+"good_id": "good_id2",
+"principal": 240000,
+"period": 6,
+"rate": "0.1245"
+},
+{
+"good_id": "good_id3",
+"principal": 800000,
+"period": 6,
+"rate": "0.1245"
+}
+]
+}
+```
+>
+`返回数据 :`
+
+```
+{
+"code": 0,
+"subcode": 0,
+"msg": "",
+"data": {
+"good_id1": 12205,        // 每期月供
+"good_id2": 12205,
+"good_id3": 12205
+}
+}
+```
+* * * * *
+
+### 2. 还款计划查询 ###
+>
+CGI URL : `/sevend_mall_app/get_repay_plan`
+>
+`请求参数 : `
+
+```
+{
+"session_key": "asfwe-va3asdf-af23234",
+"principal": 120000,	// 分期金额，单位：分
+"rate":"0.1245",		// 利率
+"period": 6			// 分期期数
+}
+```
+>
+`返回数据 :`
+
+```
+{
+"code": 0,
+"subcode": 0,
+"msg": "",
+"data": {
+"period_list": [
+{
+"period": 1,
+"repay_day": 154848411,  // Unix时间戳
+"period_total": 12205,
+"period_principal": 12000,
+"period_interest": 200
+},
+{
+"period": 2,
+"repay_day": 154848411,  // Unix时间戳
+"period_total": 12205,
+"period_principal": 12000,
+"period_interest": 200
+},
+{
+"period": 3,
+"repay_day": 154848411,  // Unix时间戳
+"period_total": 12205,
+"period_principal": 12000,
+"period_interest": 200
+}
+]
+}
+}
+```
+* * * * *
+
+### 3. 发送分期借款短信 ###
+>
+CGI URL : `/sevend_mall_app/send_loan_sms`
+>
+`请求参数 : `
+
+```
+{
+"session_key": "asfwe-va3asdf-af23234",
+"principal": 1200000,	// 借款金额
+"period": 6,		// 分期期数
+"rate":"0.1245",		// 利率
+"voice_sms":1,              // 是否发送语音验证码，1-是
+"order_no" : "1415185184"	// 订单号
+}
+```
+>
+`返回数据 :`
+
+```
+{
+"code": 0,
+"subcode": 0,
+"msg": "",
+"data": {   }
+}
+```
+* * * * *
+
+### 4. 分期借款确认 ###
+>
+CGI URL : `/sevend_mall_app/loan_confirm`
+>
+`请求参数 : `
+
+```
+{
+"session_key": "asfwe-va3asdf-af23234",
+"principal": 1200000,	// 借款金额
+"period": 6,		// 分期期数
+"rate":"0.1245",		// 利率
+"order_no" : "1415185184",	// 订单号
+"sms_code": "4578"		// 验证码
+}
+```
+>
+`返回数据 :`
+
+```
+{
+"code": 0,    // 4014：验证码过期， 4015：验证码错误
+"subcode": 0,
+"msg": "",
+"data": {
+"rc_result":1, // 1 审核通过；2 中风险，走人脸；3 已提交信审审核;4 拒绝
+"success_time":1589899 // 到账时间
+"order_no":""
+}
+}
+```
+* * * * *
+
+### 2. 根据订单号查询还款计划 ###
+>
+CGI URL : `/sevend_mall_app/get_repay_plan_by_order_no`
+>
+`请求参数 : `
+
+```
+{
+"session_key": "asfwe-va3asdf-af23234",
+"order_no": "order_no"	// 订单号
+}
+```
+>
+`返回数据 :`
+
+```
+{
+"code": 0,
+"subcode": 0,
+"msg": "",
+"data": {
+"period_list": [
+{
+"period": 1,
+"repay_day": 154848411,  // Unix时间戳
+"period_total": 12205,
+"period_principal": 12000,
+"period_interest": 200
+},
+{
+"period": 2,
+"repay_day": 154848411,  // Unix时间戳
+"period_total": 12205,
+"period_principal": 12000,
+"period_interest": 200
+},
+{
+"period": 3,
+"repay_day": 154848411,  // Unix时间戳
+"period_total": 12205,
+"period_principal": 12000,
+"period_interest": 200
+}
+]
+}
+}
+```
+* * * * *
+
+### 5. 拉取协议 ###
+>
+CGI URL : `/sevend/get_loan_agreement`
+>
+`请求参数 : `
+
+```
+{
+"session_key": "asfwe-va3asdf-af23234",
+"loan_principal": 50000,		// 借款金额，单位分
+"ticket_no":"12412414151",		// 免息卷ID
+"biz_type" : 2    	                // 1、现金贷协议，2、商城协议
+}
+```
+>
+`返回数据 :`
+
+```
+{
+"code": "0",
+"subcode": "0",
+"msg": "",
+"data": {
+"agreements": [
+{
+"name": "7贷借贷咨询服务协议",
+"url": "https://app.7daichina.com/static/agreement/agreement_loan_2party.html"
+},
+{
+"name": "7贷借贷协议",
+"url": "https://app.7daichina.com/static/agreement/agreement_loan_3party.html"
+},
+{
+"name": "7贷代扣授权协议",
+"url": "https://app.7daichina.com/static/agreement/agreement_payment.html"
+}
+]
+}
+}
+```
+* * * * *
